@@ -10,11 +10,11 @@ else{
 // Code for change password	
 if(isset($_POST['submit']))
 {
-$department=$_POST['department'];
+$Department=$_POST['Department'];
 $id=$_GET['id'];
-$sql="update  tbldepartment set departmentName=:department where id=:id";
+$sql="update  tbldepartment set DepartmentName=:Department where id=:id";
 $query = $dbh->prepare($sql);
-$query->bindParam(':department',$department,PDO::PARAM_STR);
+$query->bindParam(':Department',$Department,PDO::PARAM_STR);
 $query->bindParam(':id',$id,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
@@ -35,7 +35,7 @@ $msg="Department updted successfully";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>J&T Complaint Centre | Admin Create Department</title>
+	<title>J&T Complain Centre | Admin Create Department</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -115,7 +115,7 @@ foreach($results as $result)
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Department Name</label>
 												<div class="col-sm-8">
-													<input type="text" class="form-control" value="<?php echo htmlentities($result->departmentName);?>" name="department" id="department" required>
+													<input type="text" class="form-control" value="<?php echo htmlentities($result->DepartmentName);?>" name="Department" id="Department" required>
 												</div>
 											</div>
 											<div class="hr-dashed"></div>
