@@ -1,10 +1,14 @@
-<?php 
+
+<?php
 session_start();
-include('includes/config.php');
 error_reporting(0);
-
+include('includes/config.php');
+if(strlen($_SESSION['login'])==0)
+  { 
+header('location:index.php');
+}
+else{
 ?>
-
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -13,15 +17,22 @@ error_reporting(0);
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>J&T Complain Centre</title>
+<title>J&T Complain Centre | My Complaint </title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
+<!--Custome Style -->
 <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+<!--OWL Carousel slider-->
 <link rel="stylesheet" href="assets/css/owl.carousel.css" type="text/css">
 <link rel="stylesheet" href="assets/css/owl.transitions.css" type="text/css">
+<!--slick-slider -->
 <link href="assets/css/slick.css" rel="stylesheet">
+<!--bootstrap-slider -->
 <link href="assets/css/bootstrap-slider.min.css" rel="stylesheet">
+<!--FontAwesome Font Style -->
 <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- SWITCHER -->
 		<link rel="stylesheet" id="switcher-css" type="text/css" href="assets/switcher/css/switcher.css" media="all" />
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/red.css" title="red" media="all" data-default-color="true" />
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/orange.css" title="orange" media="all" />
@@ -29,124 +40,124 @@ error_reporting(0);
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/pink.css" title="pink" media="all" />
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/green.css" title="green" media="all" />
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/purple.css" title="purple" media="all" />
+        
+<!-- Fav and touch icons -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/favicon-icon/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/favicon-icon/apple-touch-icon-114-precomposed.html">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/favicon-icon/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed" href="assets/images/favicon-icon/apple-touch-icon-57-precomposed.png">
 <link rel="shortcut icon" href="assets/images/favicon-icon/favicon.png">
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet"> 
+<!-- Google-Font-->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 </head>
 <body>
-
-<!-- Start Switcher -->
 <?php include('includes/colorswitcher.php');?>
 <!-- /Switcher -->  
         
 <!--Header-->
 <?php include('includes/header.php');?>
-<!-- /Header --> 
-
-<!-- Banners -->
-<section id="banner" class="banner-section">
+<!--Page Header-->
+<section class="page-header profile_page">
   <div class="container">
-    <div class="div_zindex">
-      <div class="row">
-        <div class="col-md-5 col-md-push-7">
-          <div class="banner_content">
-            <h1>Lets we help you.</h1>
-            <p>You can make complaint here by login here. </p>
-            <a href="#" class="btn">Read More <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a> </div>
-        </div>
+    <div class="page-header_wrap">
+      <div class="page-heading">
+        <h1>My Complaint</h1>
       </div>
+      <ul class="coustom-breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li>My Complaint</li>
+      </ul>
     </div>
   </div>
+  <!-- Dark Overlay-->
+  <div class="dark-overlay"></div>
 </section>
-<!-- /Banners --> 
+<!-- /Page Header--> 
 
-<!-- Resent Cat-->
-<section class="section-padding gray-bg">
-  <div class="container">
-    <div class="section-header text-center">
-      <h2>Lets us handle your <span>Complaint</span></h2>
-    </div>
-    <div class="row"> 
-
-</div>
-</div>
-</div>
-<?php }}?>
-       
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /Resent Cat --> 
-
-
-<!--Complaint -->
-<section class="section-padding complaint-section parallex-bg">
-  <div class="container div_zindex">
-    <div class="section-header white-text text-center">
-      <h2>Complain frequently asked by <span>Customers</span></h2>
-    </div>
-    <div class="row">
-      <div id="complaint-slider">
 <?php 
-$tid=1;
-$sql = "SELECT tblcomplaint.Complaint,tblusers.FullName from tblcomplaint join tblusers on tblcomplaint.UserEmail=tblusers.EmailId where tblcomplaint.status=:tid";
+$useremail=$_SESSION['login'];
+$sql = "SELECT * from tblusers where EmailId=:useremail";
 $query = $dbh -> prepare($sql);
-$query->bindParam(':tid',$tid, PDO::PARAM_STR);
+$query -> bindParam(':useremail',$useremail, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
 if($query->rowCount() > 0)
 {
 foreach($results as $result)
-{  ?>
+{ ?>
+<section class="user_profile inner_pages">
+  <div class="container">
+    <div class="user_profile_info gray-bg padding_4x4_40">
+      <div class="upload_user_logo"> <img src="assets/images/dealer-logo.jpg" alt="image">
+      </div>
+
+      <div class="dealer_info">
+        <h5><?php echo htmlentities($result->FullName);?></h5>
+        <p><?php echo htmlentities($result->Address);?><br>
+          <?php echo htmlentities($result->City);?>&nbsp;<?php echo htmlentities($result->Country); }}?></p>
+      </div>
+    </div>
+  
+  <div class="row">
+      <div class="col-md-3 col-sm-3">
+        <?php include('includes/sidebar.php');?>
+      <div class="col-md-8 col-sm-8">
 
 
-        <div class="complaint-m">
-          <div class="complaint-img"> <img src="assets/images/cat-profile.png" alt="" /> </div>
-          <div class="complaint-content">
-            <div class="complaint-heading">
-              <h5><?php echo htmlentities($result->FullName);?></h5>
-            <p><?php echo htmlentities($result->complaint);?></p>
+
+        <div class="profile_wrap">
+          <h5 class="uppercase underline">My Complaint </h5>
+          <div class="my_vehicles_list">
+            <ul class="vehicle_listing">
+<?php 
+$useremail=$_SESSION['login'];
+$sql = "SELECT * from tblcomplaint where UserEmail=:useremail";
+$query = $dbh -> prepare($sql);
+$query -> bindParam(':useremail',$useremail, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+
+if($cnt=$query->rowCount() > 0)
+{
+foreach($results as $result)
+{ ?>
+
+              <li>
+           
+                <div>
+                 <p><?php echo htmlentities($result->Complaint);?> </p>
+                   <p><b>Posting Date:</b><?php echo htmlentities($result->PostingDate);?> </p>
+                </div>
+                <?php if($result->status==1){ ?>
+                 <div class="vehicle_status"> <a class="btn outline btn-xs active-btn">Active</a>
+
+                  <div class="clearfix"></div>
+                  </div>
+                  <?php } else {?>
+               <div class="vehicle_status"> <a href="#" class="btn outline btn-xs">Waiting for approval</a>
+                  <div class="clearfix"></div>
+                  </div>
+                  <?php } ?>
+              </li>
+              <?php } } ?>
+              
+            </ul>
+           
           </div>
         </div>
-        </div>
-        <?php }} ?>
-        
-       
-  
       </div>
     </div>
   </div>
-  <!-- Dark Overlay-->
-  <div class="dark-overlay"></div>
 </section>
-<!-- /Complaint--> 
+<!--/my-vehicles--> 
 
-
-<!--Footer -->
+<<!--Footer -->
 <?php include('includes/footer.php');?>
 <!-- /Footer--> 
 
 <!--Back to top-->
 <div id="back-top" class="back-top"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
-<!--/Back to top--> 
-
-<!--Login-Form -->
-<?php include('includes/login.php');?>
-<!--/Login-Form --> 
-
-<!--Register-Form -->
-<?php include('includes/registration.php');?>
-
-<!--/Register-Form --> 
-
-<!--Forgot-password-Form -->
-<?php include('includes/forgotpassword.php');?>
-<!--/Forgot-password-Form --> 
 
 <!-- Scripts --> 
 <script src="assets/js/jquery.min.js"></script>
@@ -161,6 +172,5 @@ foreach($results as $result)
 <script src="assets/js/owl.carousel.min.js"></script>
 
 </body>
-
-<!-- Mirrored from themes.webmasterdriver.net/carforyou/demo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 16 Jun 2017 07:22:11 GMT -->
 </html>
+<?php } ?>

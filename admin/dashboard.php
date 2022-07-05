@@ -19,7 +19,7 @@ else{
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>Car Rental Portal | Admin Dashboard</title>
+	<title>J&T Complaint Centre | Admin Dashboard</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -67,7 +67,7 @@ $results=$query->fetchAll(PDO::FETCH_OBJ);
 $regusers=$query->rowCount();
 ?>
 													<div class="stat-panel-number h1 "><?php echo htmlentities($regusers);?></div>
-													<div class="stat-panel-title text-uppercase">Reg Users</div>
+													<div class="stat-panel-title text-uppercase">Regular Users</div>
 												</div>
 											</div>
 											<a href="reg-users.php" class="block-anchor panel-footer">Full Detail <i class="fa fa-arrow-right"></i></a>
@@ -75,57 +75,20 @@ $regusers=$query->rowCount();
 									</div>
 									<div class="col-md-3">
 										<div class="panel panel-default">
-											<div class="panel-body bk-success text-light">
-												<div class="stat-panel text-center">
-												<?php 
-$sql1 ="SELECT id from tblvehicles ";
-$query1 = $dbh -> prepare($sql1);;
-$query1->execute();
-$results1=$query1->fetchAll(PDO::FETCH_OBJ);
-$totalvehicle=$query1->rowCount();
-?>
-													<div class="stat-panel-number h1 "><?php echo htmlentities($totalvehicle);?></div>
-													<div class="stat-panel-title text-uppercase">Listed Vehicles</div>
-												</div>
-											</div>
-											<a href="manage-vehicles.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="panel panel-default">
-											<div class="panel-body bk-info text-light">
-												<div class="stat-panel text-center">
-<?php 
-$sql2 ="SELECT id from tblbooking ";
-$query2= $dbh -> prepare($sql2);
-$query2->execute();
-$results2=$query2->fetchAll(PDO::FETCH_OBJ);
-$bookings=$query2->rowCount();
-?>
-
-													<div class="stat-panel-number h1 "><?php echo htmlentities($bookings);?></div>
-													<div class="stat-panel-title text-uppercase">Total Bookings</div>
-												</div>
-											</div>
-											<a href="manage-bookings.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="panel panel-default">
 											<div class="panel-body bk-warning text-light">
 												<div class="stat-panel text-center">
 <?php 
-$sql3 ="SELECT id from tblbrands ";
+$sql3 ="SELECT id from tbldepartment ";
 $query3= $dbh -> prepare($sql3);
 $query3->execute();
 $results3=$query3->fetchAll(PDO::FETCH_OBJ);
 $brands=$query3->rowCount();
 ?>												
 													<div class="stat-panel-number h1 "><?php echo htmlentities($brands);?></div>
-													<div class="stat-panel-title text-uppercase">Listed Brands</div>
+													<div class="stat-panel-title text-uppercase">Listed Department</div>
 												</div>
 											</div>
-											<a href="manage-brands.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+											<a href="manage-department.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -184,18 +147,18 @@ $query=$query6->rowCount();
 											<div class="panel-body bk-info text-light">
 												<div class="stat-panel text-center">
 <?php 
-$sql5 ="SELECT id from tbltestimonial ";
+$sql5 ="SELECT id from tblcomplaint ";
 $query5= $dbh -> prepare($sql5);
 $query5->execute();
 $results5=$query5->fetchAll(PDO::FETCH_OBJ);
-$testimonials=$query5->rowCount();
+$complaint=$query5->rowCount();
 ?>
 
-													<div class="stat-panel-number h1 "><?php echo htmlentities($testimonials);?></div>
+													<div class="stat-panel-number h1 "><?php echo htmlentities($complaint);?></div>
 													<div class="stat-panel-title text-uppercase">Testimonials</div>
 												</div>
 											</div>
-											<a href="testimonials.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+											<a href="complaint.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 								

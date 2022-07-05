@@ -60,16 +60,14 @@ foreach($results as $result)
            <?php if($_SESSION['login']){?>
             <li><a href="profile.php">Profile Settings</a></li>
               <li><a href="update-password.php">Update Password</a></li>
-            <li><a href="my-booking.php">My Booking</a></li>
-            <li><a href="post-testimonial.php">Post a Testimonial</a></li>
-          <li><a href="my-testimonials.php">My Testimonial</a></li>
+            <li><a href="post-complaint.php">Post a Complain</a></li>
+          <li><a href="my-complaint.php">My Complain</a></li>
             <li><a href="logout.php">Sign Out</a></li>
             <?php } else { ?>
             <li><a href="#loginform"  data-toggle="modal" data-dismiss="modal">Profile Settings</a></li>
               <li><a href="#loginform"  data-toggle="modal" data-dismiss="modal">Update Password</a></li>
-            <li><a href="#loginform"  data-toggle="modal" data-dismiss="modal">My Booking</a></li>
-            <li><a href="#loginform"  data-toggle="modal" data-dismiss="modal">Post a Testimonial</a></li>
-          <li><a href="#loginform"  data-toggle="modal" data-dismiss="modal">My Testimonial</a></li>
+            <li><a href="#loginform"  data-toggle="modal" data-dismiss="modal">Post a Complaint</a></li>
+          <li><a href="#loginform"  data-toggle="modal" data-dismiss="modal">My Complaint</a></li>
             <li><a href="#loginform"  data-toggle="modal" data-dismiss="modal">Sign Out</a></li>
             <?php } ?>
           </ul>
@@ -89,7 +87,6 @@ foreach($results as $result)
           <li><a href="index.php">Home</a>    </li>
 
           <li><a href="page.php?type=aboutus">About Us</a></li>
-          <li><a href="car-listing.php">Car Listing</a>
           <li><a href="page.php?type=faqs">FAQs</a></li>
           <li><a href="contact-us.php">Contact Us</a></li>
 
