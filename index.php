@@ -63,68 +63,6 @@ error_reporting(0);
 </section>
 <!-- /Banners --> 
 
-<!-- Resent Cat-->
-<section class="section-padding gray-bg">
-  <div class="container">
-    <div class="section-header text-center">
-      <h2>Lets us handle your <span>Complaint</span></h2>
-    </div>
-    <div class="row"> 
-
-</div>
-</div>
-</div>
-<?php ?>
-       
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /Resent Cat --> 
-
-
-<!--Complaint -->
-<section class="section-padding complaint-section parallex-bg">
-  <div class="container div_zindex">
-    <div class="section-header white-text text-center">
-      <h2>Complain frequently asked by <span>Customers</span></h2>
-    </div>
-    <div class="row">
-      <div id="complaint-slider">
-<?php 
-$tid=1;
-$sql = "SELECT tblcomplaint.Complaint,tblusers.FullName from tblcomplaint join tblusers on tblcomplaint.UserEmail=tblusers.EmailId where tblcomplaint.status=:tid";
-$query = $dbh -> prepare($sql);
-$query->bindParam(':tid',$tid, PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{  ?>
-
-
-        <div class="complaint-m">
-          <div class="complaint-img"> <img src="assets/images/cat-profile.png" alt="" /> </div>
-          <div class="complaint-content">
-            <div class="complaint-heading">
-              <h5><?php echo htmlentities($result->FullName);?></h5>
-            <p><?php echo htmlentities($result->complaint);?></p>
-          </div>
-        </div>
-        </div>
-        <?php }} ?>
-        
-       
-  
-      </div>
-    </div>
-  </div>
-  <!-- Dark Overlay-->
-  <div class="dark-overlay"></div>
-</section>
-<!-- /Complaint--> 
 
 
 <!--Footer -->
