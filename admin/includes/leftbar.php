@@ -12,7 +12,7 @@
 </li>
 
 
-				<li><a href="manage-complaint.php"><i class="fa fa-table"></i> Manage Complaint</a></li>
+				<li><a href="complaint.php"><i class="fa fa-table"></i> Manage Complaint</a></li>
 				<li><a href="manage-conactusquery.php"><i class="fa fa-desktop""></i> Manage Conatct us</a></li>
 				<li><a href="reg-users.php"><i class="fa fa-users"></i> Reg Users</a></li>
 			<li><a href="manage-pages.php"><i class="fa fa-files-o"></i> Manage Pages</a></li>

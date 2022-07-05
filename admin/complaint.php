@@ -11,7 +11,7 @@ if(isset($_REQUEST['eid']))
 	{
 $eid=intval($_GET['eid']);
 $status="0";
-$sql = "UPDATE tbldepartment SET status=:status WHERE  id=:eid";
+$sql = "UPDATE tblcomplaint SET status=:status WHERE  id=:eid";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query-> bindParam(':eid',$eid, PDO::PARAM_STR);
@@ -26,7 +26,7 @@ if(isset($_REQUEST['aeid']))
 $aeid=intval($_GET['aeid']);
 $status=1;
 
-$sql = "UPDATE tbldepartment SET status=:status WHERE  id=:aeid";
+$sql = "UPDATE tblcomplaint SET status=:status WHERE  id=:aeid";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query-> bindParam(':aeid',$aeid, PDO::PARAM_STR);
@@ -130,7 +130,7 @@ $msg="complaint Successfully Active";
 									</tfoot>
 									<tbody>
 
-									<?php $sql = "SELECT tblusers.FullName,tbldepartment.UserEmail,tbldepartment.complaint,tbldepartment.PostingDate,tbldepartment.status,tbldepartment.id from tbldepartment join tblusers on tblusers.Emailid=tbldepartment.UserEmail";
+									<?php $sql = "SELECT tblusers.FullName,tblcomplaint.UserEmail,tblcomplaint.complaint,tblcomplaint.PostingDate,tblcomplaint.status,tblcomplaint.id from tblcomplaint join tblusers on tblusers.Emailid=tblcomplaint.UserEmail";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -147,10 +147,10 @@ foreach($results as $result)
 											<td><?php echo htmlentities($result->PostingDate);?></td>
 										<td><?php if($result->status=="" || $result->status==0)
 {
-	?><a href="Complaint.php?aeid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Active')"> Inactive</a>
+	?><a href="complaint.php?aeid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Active')"> Inactive</a>
 <?php } else {?>
 
-<a href="Complaint.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Inactive')"> Active</a>
+<a href="complaint.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Inactive')"> Active</a>
 </td>
 <?php } ?></td>
 										</tr>
