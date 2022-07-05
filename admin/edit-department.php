@@ -10,11 +10,11 @@ else{
 // Code for change password	
 if(isset($_POST['submit']))
 {
-$department=$_POST['department'];
+$Department=$_POST['Department'];
 $id=$_GET['id'];
-$sql="update  tbldepartment set DepartmentName=:department where id=:id";
+$sql="update  tbldepartment set BrandName=:Department where id=:id";
 $query = $dbh->prepare($sql);
-$query->bindParam(':department',$department,PDO::PARAM_STR);
+$query->bindParam(':Department',$Department,PDO::PARAM_STR);
 $query->bindParam(':id',$id,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
@@ -35,7 +35,7 @@ $msg="Department updated successfully";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>J&T Complain Centre | Admin Create Department</title>
+	<title>J&T Complain cetre | Admin Create Department</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
