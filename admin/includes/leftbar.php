@@ -7,7 +7,7 @@
 <li><a href="#"><i class="fa fa-files-o"></i> Department</a>
 <ul>
 <li><a href="create-department.php">Create Department</a></li>
-<li><a href="edit-department.php">Manage Department</a></li>
+<li><a href="manage-department.php">Manage Department</a></li>
 </ul>
 </li>
 

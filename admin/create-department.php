@@ -39,7 +39,7 @@ $error="Something went wrong. Please try again";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>J&T Complaint Centre | Admin Create Department</title>
+	<title>J&T Complain centre | Admin Create Department</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
