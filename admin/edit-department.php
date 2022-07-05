@@ -10,16 +10,16 @@ else{
 // Code for change password	
 if(isset($_POST['submit']))
 {
-$Department=$_POST['Department'];
+$department=$_POST['department'];
 $id=$_GET['id'];
-$sql="update  tbldepartment set DepartmentName=:Department where id=:id";
+$sql="update  tbldepartment set DepartmentName=:department where id=:id";
 $query = $dbh->prepare($sql);
-$query->bindParam(':Department',$Department,PDO::PARAM_STR);
+$query->bindParam(':department',$department,PDO::PARAM_STR);
 $query->bindParam(':id',$id,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 
-$msg="Department updted successfully";
+$msg="Department updated successfully";
 
 }
 ?>
