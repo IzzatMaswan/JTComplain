@@ -115,7 +115,7 @@ $msg="complaint Successfully Active";
 											<th>Email</th>
 											<th>Complaint</th>
 											<th>Posting date</th>
-											<th>Action</th>
+											<th>Status</th>
 										</tr>
 									</thead>
 									<tfoot>
@@ -125,7 +125,7 @@ $msg="complaint Successfully Active";
 											<th>Email</th>
 											<th>Complaint</th>
 											<th>Posting date</th>
-											<th>Action</th>
+											<th>Status</th>
 										</tr>
 									</tfoot>
 									<tbody>
@@ -145,13 +145,34 @@ foreach($results as $result)
 											<td><?php echo htmlentities($result->UserEmail);?></td>
 											<td><?php echo htmlentities($result->complaint);?></td>
 											<td><?php echo htmlentities($result->PostingDate);?></td>
-										<td><?php if($result->status=="" || $result->status==0)
+										<td><?php if($result->status=="" || $result->status==0) 
 {
 	?><a href="complaint.php?aeid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Active')"> Inactive</a>
 <?php } else {?>
 
 <a href="complaint.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Inactive')"> Active</a>
 </td>
+<td><select Emp Name='NEW'>  
+            <option value="">--- Select ---</option>  
+            <?  
+                mysql_connect ("localhost","root","");  
+                mysql_select_db ("jt");  
+                $select="jt";  
+                if (isset ($select)&&$select!=""){  
+                $select=$_POST ['NEW'];  
+            }  
+            ?>  
+            <?  
+                $list=mysql_query("select * from tbldepartment order by id asc");  
+            while($row_list=mysql_fetch_assoc($list)){  
+                ?>  
+                    <option value="<? echo $row_list['id']; ?>"<? if($row_list['id']==$select){ echo "selected"; } ?>>  
+                                         <?echo $row_list['DepartmentName'];?>  
+                    </option>  
+                <?  
+                }  
+                ?>  
+            </select></td>
 <?php } ?></td>
 										</tr>
 										<?php $cnt=$cnt+1; }} ?>
