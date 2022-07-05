@@ -74,7 +74,7 @@ error_reporting(0);
 </div>
 </div>
 </div>
-<?php }}?>
+<?php ?>
        
       </div>
     </div>
