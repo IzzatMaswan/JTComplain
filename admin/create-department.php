@@ -11,9 +11,10 @@ else{
 if(isset($_POST['submit']))
 {
 $department=$_POST['department'];
-$sql="INSERT INTO  tbldepartment(DepartmentName) VALUES(:department)";
+$ManagerName=$_POST['ManagerName'];
+$sql="INSERT INTO  tbldepartment(DepartmentName, ManagerName) VALUES(:department,:ManagerName)";
 $query = $dbh->prepare($sql);
-$query->bindParam(':department',$department,PDO::PARAM_STR);
+$query->bindParam(':department',$department,':ManagerName',$ManagerName ,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
@@ -89,7 +90,7 @@ $error="Something went wrong. Please try again";
 				<div class="row">
 					<div class="col-md-12">
 					
-						<h2 class="page-title">Create Department</h2>
+						<h2 class="page-title">Create Department & Roles</h2>
 
 						<div class="row">
 							<div class="col-md-10">
@@ -105,6 +106,12 @@ $error="Something went wrong. Please try again";
 												<label class="col-sm-4 control-label">Department Name</label>
 												<div class="col-sm-8">
 													<input type="text" class="form-control" name="department" id="department" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-4 control-label">Manager Name</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control" name="ManagerName" id="department" required>
 												</div>
 											</div>
 											<div class="hr-dashed"></div>
