@@ -11,10 +11,10 @@ else{
 if(isset($_POST['submit']))
 {
 $department=$_POST['department'];
-$ManagerName=$_POST['ManagerName'];
-$sql="INSERT INTO  tbldepartment(DepartmentName, ManagerName) VALUES(:department,:ManagerName)";
+$Manager=$_POST['Manager'];
+$sql="INSERT INTO tbldepartment(DepartmentName, ManagerName) VALUES(:department,:Manager)";
 $query = $dbh->prepare($sql);
-$query->bindParam(':department',$department,':ManagerName',$ManagerName ,PDO::PARAM_STR);
+$query->bindParam(':department',$department,':Manager',$Manager ,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
@@ -101,7 +101,8 @@ $error="Something went wrong. Please try again";
 										
 											
   	        	  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+				else if($msg){?>
+									<div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Department Name</label>
 												<div class="col-sm-8">
@@ -111,7 +112,7 @@ $error="Something went wrong. Please try again";
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Manager Name</label>
 												<div class="col-sm-8">
-													<input type="text" class="form-control" name="ManagerName" id="ManagerName" required>
+													<input type="text" class="form-control" name="Manager" id="Manager" required>
 												</div>
 											</div>
 											<div class="hr-dashed"></div>
