@@ -152,7 +152,7 @@ foreach($results as $result)
 
 <a href="complaint.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Inactive')"> Active</a>
 </td>
-<td><select Emp Name='NEW'>  
+<td><select ManagerName='NEW'>  
             <option value="">--- Select ---</option>  
             <?  
                 mysql_connect ("localhost","root","");  

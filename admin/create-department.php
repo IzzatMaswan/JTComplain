@@ -14,7 +14,8 @@ $department=$_POST['department'];
 $Manager=$_POST['Manager'];
 $sql="INSERT INTO tbldepartment(DepartmentName, ManagerName) VALUES(:department,:Manager)";
 $query = $dbh->prepare($sql);
-$query->bindParam(':department',$department,':Manager',$Manager ,PDO::PARAM_STR);
+$query->bindParam(':department',$department ,PDO::PARAM_STR);
+$query->bindParam(':Manager',$Manager ,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
