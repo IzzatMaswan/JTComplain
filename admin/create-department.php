@@ -111,7 +111,7 @@ $error="Something went wrong. Please try again";
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Manager Name</label>
 												<div class="col-sm-8">
-													<input type="text" class="form-control" name="ManagerName" id="department" required>
+													<input type="text" class="form-control" name="ManagerName" id="ManagerName" required>
 												</div>
 											</div>
 											<div class="hr-dashed"></div>
