@@ -11,7 +11,7 @@ if(isset($_POST['submit']))
   {
 $complaint=$_POST['complaint'];
 $email=$_SESSION['login'];
-$sql="INSERT INTO  tblcomplaint(UserEmail,complaint) VALUES(:email,:complaint)";
+$sql="INSERT INTO  tblcomplaint(UserEmail,complaint,ComplaintFile) VALUES(:email,:complaint,:ComplaintFile)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':complaint',$complaint,PDO::PARAM_STR);
 $query->bindParam(':email',$email,PDO::PARAM_STR);
@@ -27,8 +27,23 @@ else
 $error="Something went wrong. Please try again";
 }
 
+$compfile=$_FILES["compfile"]["name"];
+
+
+
+move_uploaded_file($_FILES["compfile"]["tmp_name"],"complaintdocs/".$_FILES["compfile"]["name"]);
+$sql="INSERT INTO  tblcomplaint(UserEmail,complaint,ComplaintFile) VALUES(:email,:complaint,:ComplaintFile)";
+// code for show complaint number
+$sql=mysqli_query($con,"select id from tblcomplaint  order by id desc limit 1");
+while($row=mysqli_fetch_array($sql))
+{
+ $cmpn=$row['id'];
+}
+$complainno=$cmpn;
+echo '<script> alert("Your complain has been successfully filled and your complaintno is  "+"'.$id.'")</script>';
 }
 ?>
+
   <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -152,6 +167,13 @@ foreach($results as $result)
               <label class="control-label">Complaint</label>
               <textarea class="form-control white_bg" name="complaint" rows="4" required=""></textarea>
             </div>
+
+            <div class="form-group">
+            <label class="control-label">Complaint Related Doc (if any) </label>
+            <input type="file" name="compfile" class="form-control" value="">
+            </div>
+
+            
           
            
             <div class="form-group">
