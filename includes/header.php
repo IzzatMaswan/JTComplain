@@ -25,7 +25,7 @@
 <?php }
 else{
 
-echo "Welcome To Car rental portal";
+echo "Welcome To J&T Complaint System";
  } ?>
           </div>
         </div>
